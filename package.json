@@ -1,0 +1,26 @@
+{
+  "name": "oneboard",
+  "version": "1.0.0",
+  "description": "oneboard for missing persons during natural disasters",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dominiqueh/Final-Project-for-RefactorU.git"
+  },
+  "author": "Dominique Horner",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dominiqueh/Final-Project-for-RefactorU/issues"
+  },
+  "homepage": "https://github.com/dominiqueh/Final-Project-for-RefactorU#readme",
+  "dependencies": {
+    "body-parser": "^1.15.0",
+    "cors": "^2.7.1",
+    "express": "^4.13.4",
+    "mongoose": "^4.4.12",
+    "morgan": "^1.7.0"
+  }
+}
