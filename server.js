@@ -5,29 +5,27 @@
 var express     = require('express'),
     app         = express(),
     bodyP       = require('body-parser'),
-    // logger      = require('morgan'),
-    // cors        = require('cors'),
+    logger      = require('morgan'),
+    cors        = require('cors'),
     mongoose    = require('mongoose'),
     port        = process.env.PORT || 8080,
-    Person      = require('.app/models/bear'),
+    Person      = require('./models/missingPerson.js').Person
 
 //==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==
 // CONNECT TO DATABASE
 //==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==
-mongoose.connect( mongodb:dominiqueh:metalangel2710@ds057244.mlab.com:57244/oneboard, function(err){
+mongoose.connect( 'mongodb://admin:munster47@ds057244.mlab.com:57244/oneboard', function(err){
   if(err) console.log(err)
-  console.log('connected to OneBoard DB')
+  console.log('connected to OneBoard MONGODS')
 })
-
 
 //==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==
 // APPLY MIDDLEWARE
 //==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==
-// app.use(logger('dev')) // applies log to each request coming in
+app.use(logger('dev')) // applies log to each request coming in
 app.use(bodyP.urlencoded({ extended : true })) // stringifies query data
 app.use(bodyP.json()) // parses data to json
-// app.use(cors()) // cors errors
-
+app.use(cors()) // cors errors
 
 //==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==
 // ROUTES FOR API

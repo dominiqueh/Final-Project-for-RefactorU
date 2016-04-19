@@ -5,5 +5,5 @@ var mongoose      = require('mongoose'),
     })
 
     module.exports = {
-      mongoose.model('Person', personSchema)
+      Person:mongoose.model('Person', personSchema)
     }
