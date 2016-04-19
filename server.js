@@ -43,6 +43,8 @@ router.get('/', function(req,res) {
   res.json({ message: "It's ALIVE!!!! API is up!"})
 })
 
+router.route('')
+
 app.use('/api', router)
 
 //==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==
