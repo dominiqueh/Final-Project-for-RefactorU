@@ -1,23 +1,33 @@
 //==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==
 // BASE SETUP
 //==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==
-// Require needed packages
-// Define our app using express while requiring and calling express
+// requiring all needed packages
 var express     = require('express'),
     app         = express(),
-    bodyParser  = require('body-parser'),
+    bodyP       = require('body-parser'),
     logger      = require('morgan'),
     cors        = require('cors'),
+    mongoose    = require('mongoose'),
+    port        = process.env.PORT || 3000,
 
-//for every request coming in apply the logger
-app.use(logger('dev'))
-// Configure app to use bodyParser()
-// This will retrieve data from a POST HTTP request
-app.use(bodyParser.urlencoded({ extended : true })) // stringifies query data
-app.use(bodyParser.json()) // parses data to json
+//==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==
+// CONNECT TO DATABASE
+//==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==
+// mongoose.connect(dbURL, function(err){
+//   if(err) console.log(err)
+//   console.log('connected to OneBoard DB')
+// })
+
+
+//==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==
+// APPLY MIDDLEWARE
+//==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==
+app.use(logger('dev')) // applies log to each request coming in
+app.use(bodyP.urlencoded({ extended : true })) // stringifies query data
+app.use(bodyP.json()) // parses data to json
 app.use(cors()) // cors errors
 
-var port = process.env.PORT || 3000 // set the PORT
+
 //==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==
 // ROUTES FOR API
 //==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==
@@ -31,5 +41,7 @@ app.use('/api', router)
 //==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==
 // STARTING THE SERVER
 //==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==
-app.listen(port)
-console.log('Magic is happening on port ' + port)
+app.listen(port, function(err){
+  if (err) console.log(err)
+  console.log("Magic is happening on port: " + port)
+})
