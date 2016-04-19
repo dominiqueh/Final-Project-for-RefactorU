@@ -4,10 +4,10 @@
 // Require needed packages
 // Define our app using express while requiring and calling express
 var express     = require('express'),
-var app         = express(),
-var bodyParser  = require('body-parser'),
-var logger      = require('morgan'),
-var cors        = require('cors')
+    app         = express(),
+    bodyParser  = require('body-parser'),
+    logger      = require('morgan'),
+    cors        = require('cors'),
 
 //for every request coming in apply the logger
 app.use(logger('dev'))
