@@ -1,13 +1,16 @@
-var db = require('../models/missingPerson.js')
+//===+==+=+=+==+===*===+==+=+=+==+===*===+==+=+=+==+====
+// USER CONTROLLER
+//===+==+=+=+==+===*===+==+=+=+==+===*===+==+=+=+==+====
+var db = require('../models/schemas.js')
 
-module.exports = {
+module.exports = { //end base setup
   userController: {
+
+// create a user
     create: function(req,res){
-      console.log("making new user")
-
       var user = new db.user(req.body)
-
       user.save(function(err, user){
+        console.log("User was created!")
         if(err){
           res.json(err)
         } else {
@@ -15,6 +18,8 @@ module.exports = {
         }
       })
     },
+
+// retrieve a user
     get: function(req,res){
       console.log('getting user')
       db.User.find({}, function(err, user){
@@ -26,6 +31,8 @@ module.exports = {
         }
       })
     },
+
+  // user sign-in
     signIn: function(req, res){
       console.log("Signing In")
       //is the user signed up? call the model file
@@ -40,9 +47,8 @@ module.exports = {
             else{
               res.json({message: "Password does not match"})
             }
-          }
         } else {
-          res.json({message: "user does not exist"})
+          res.json({message: "User does not exist"})
         }
       })
     }
