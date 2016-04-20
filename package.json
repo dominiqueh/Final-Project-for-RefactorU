@@ -17,6 +17,8 @@
   },
   "homepage": "https://github.com/dominiqueh/Final-Project-for-RefactorU#readme",
   "dependencies": {
+    "bcrypt": "^0.8.5",
+    "bcryptjs": "^2.3.0",
     "body-parser": "^1.15.0",
     "cors": "^2.7.1",
     "express": "^4.13.4",

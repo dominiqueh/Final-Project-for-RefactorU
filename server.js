@@ -8,6 +8,7 @@ var express     = require('express'),
     logger      = require('morgan'),
     cors        = require('cors'),
     mongoose    = require('mongoose'),
+    // bcrypt      = require('bcrypt')
     port        = process.env.PORT || 8080,
     Person      = require('./models/missingPerson.js').Person
 
@@ -45,7 +46,7 @@ router.get('/', function(req,res) {
 
 router.route('')
 
-app.use('/api', router)
+app.use('/api/v1/', router)
 
 //==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==
 // STARTING THE SERVER
