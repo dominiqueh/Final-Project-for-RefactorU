@@ -12,7 +12,7 @@
         //post request to api signin endpoint
         return $http.post('/api/v1/signIn', {email: email, password: password})//(uri, req.body)
             .then(function(data){
-              AuthToken.setToken(data.token)
+              AuthToken.setToken(data.token)// under windows storage object
               return data
             })
       authFactory.logout = function(){

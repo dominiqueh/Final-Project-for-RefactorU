@@ -1,9 +1,9 @@
 var
-  router = require('express').Router(),
-  jwt    = require('jsonwebtoken'),
-  entryCtrl   = require(./controllers/controllerEntry.js)
-  userCtrl   = require(./controllers/controllerUser.js)
-  secret = "super duper secret"
+  router      = require('express').Router(),
+  jwt         = require('jsonwebtoken'),
+  entryCtrl   = require(./controllers/controllerEntry)
+  userCtrl    = require(./controllers/controllerUser)
+  secret      = "super duper secret"
 
 //sign in route, everyone should be able to access
 //assign routes in the order in which you want people to access, want to restrict access to people not signed -in

@@ -6,6 +6,7 @@ var db     = require('../models/schemas.js'),
     secret = 'super duper secret'
 
 module.exports = { //end base setup
+  
   userController: {
 
 // create a user
