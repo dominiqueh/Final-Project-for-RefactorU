@@ -1,15 +1,18 @@
 var
   router = require('express').Router(),
-  // contrl =,
-  jwt     = require('jsonwebtoken')
+  jwt    = require('jsonwebtoken'),
+  entryCtrl   = require(./controllers/controllerEntry.js)
+  userCtrl   = require(./controllers/controllerUser.js)
   secret = "super duper secret"
 
 //sign in route, everyone should be able to access
 //assign routes in the order in which you want people to access, want to restrict access to people not signed -in
 //in between each route, use middleware for routes
 router.route('/signIn')
-    .post(contrl.userController.signin)
+    .post(userCtrl.userController.signin)
 
+router.route('/users')
+    .post(userCtrl.userController.create)
 //middleware
 router.use(function(req, res, next){
        // this is going to run EVERY TIME someone goes to a url that starts with /api
@@ -24,8 +27,13 @@ router.use(function(req, res, next){
 
 //user route
 router.route('/users')
-  .get(contrl.userController.get)
-  .post(contrl.userController.create)
+  .get(userCtrl.userController.get)
+  .post(userCtrl.userController.create)
+
+router.route('/entries')
+  .get(entryCtrl.entryController.getAll)
+  .post(entryCtrl.entryController.update)
+  .delete(entryCtrl.entryController.destroy)
 //middleware
 router.use(function(req, res, next){
      // this is going to run EVERY TIME someone goes to a url that starts with /api
@@ -37,6 +45,7 @@ router.use(function(req, res, next){
      // ...and then we'll let the request continue on to our app:
      next()
   })
+
 
 
 module.exports = router

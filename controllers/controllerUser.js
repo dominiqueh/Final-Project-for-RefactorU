@@ -1,9 +1,9 @@
 //===+==+=+=+==+===*===+==+=+=+==+===*===+==+=+=+==+====
 // USER CONTROLLER
 //===+==+=+=+==+===*===+==+=+=+==+===*===+==+=+=+==+====
-var db = require('../models/schemas.js')
-  jwt     = require('jsonwebtoken')
-  secret = "super duper secret"
+var db     = require('../models/schemas.js'),
+    jwt    = require('jsonwebtoken'),
+    secret = 'super duper secret'
 
 module.exports = { //end base setup
   userController: {
@@ -36,11 +36,11 @@ module.exports = { //end base setup
 
   // user sign-in
     signIn: function(req, res){
-      console.log("Signing In")
+      console.log('Signing In')
       //is the user signed up? call the model file
       //need findOne because find would work only for arrays
       db.User.findOne({email: req.body.email}, function(err, user){
-        if(err){res.json(err)}
+        if(err)res.json(err)
         //compare hashed password with method
         //check if user exists
         if(user){
@@ -49,7 +49,7 @@ module.exports = { //end base setup
           var token = jwt.sign({
                              name: user.name,
                              email: user.email
-                             }, mySpecialSecret, {
+                           }, secret, {
                                  expiresInMinutes: 1440
                              });
                          // 4 - Send back a success message with the JWT
@@ -59,7 +59,7 @@ module.exports = { //end base setup
                              token: token
                          })
             res.json({message: "Log In Success!"})
-          } else{
+          } else {
               res.json({message: "Password does not match"})
             }
         } else {
