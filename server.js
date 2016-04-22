@@ -22,6 +22,17 @@ mongoose.connect( 'mongodb://admin:munster47@ds057244.mlab.com:57244/oneboard', 
 })
 
 //==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==
+// SETTING UP DEPENDENCIES
+//==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==
+
+app.use(logger('dev'))
+app.use(bodyP.json())
+app.use(bodyP.urlencoded({extended:true}))
+app.use(cors())
+app.use('/api/v1/stemsApp', apiRoutes)
+app.use(express.static(__dirname + '/public'))
+
+//==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==
 // STARTING THE SERVER
 //==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==
 app.listen(port, function(err){
