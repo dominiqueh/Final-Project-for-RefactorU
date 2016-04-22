@@ -17,7 +17,7 @@ var mongoose      = require('mongoose'),
       admin     : Boolean
     }),
 
-    userSch ema.pre('save', function(next){
+    userSchema.pre('save', function(next){
       var user = this // defining the scope to be the user using this method
       if (!user.isModified('password')) return next() // checking to see if they modified the password
       user.password = bcrypt.hashSync(user.password, 8) // makes a hash password using the bcrypt gem, 1st arg is the string password, 2nd how many times to jumble it up
@@ -29,25 +29,28 @@ var mongoose      = require('mongoose'),
       return bcrypt.compareSync(pw, user.password) // ensures user enters the correct password
     }
 
-
 //===+==+=+=+==+===*===+==+=+=+==+===*===+==+=+=+==+====//
 // ENTRY SCHEMA
 //===+==+=+=+==+===*===+==+=+=+==+===*===+==+=+=+==+====//
 
   entrySchema = new Schema ({
-    name        : String,
-    gender      : String,
-    age         : Number,
-    photo       : String,
-    dateListed  : Date,
-    centerListed: String,
-    lastSeen    : String,
-    report      : String,
-    sandw       : String
+    firstName       : {type: String, required: true},
+    lastName        : {type: String, required: true},
+    email           : String,
+    gender          : String,
+    age             : Number,
+    photo           : Image,
+    dateListed      : Date,
+    dateUpdated     : Date,
+    center          : String,
+    region          : String,
+    lastSeen        : Date,
+    entryNote       : [String],
+    sAndW           : String
   })
 
 //===+==+=+=+==+===*===+==+=+=+==+===*===+==+=+=+==+====//
-// CONNECT ALL SCHEMAS
+// EXPORT & CONNECT ALL SCHEMAS
 //===+==+=+=+==+===*===+==+=+=+==+===*===+==+=+=+==+====//
 module.exports = {
       User  = mongoose.model('User', userSchema),
