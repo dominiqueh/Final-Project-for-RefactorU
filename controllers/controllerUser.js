@@ -1,18 +1,22 @@
 //===+==+=+=+==+===*===+==+=+=+==+===*===+==+=+=+==+====
-// USER CONTROLLER
+// BASE SETUP
 //===+==+=+=+==+===*===+==+=+=+==+===*===+==+=+=+==+====
 var db     = require('../models/schemas.js'),
     jwt    = require('jsonwebtoken'),
     secret = 'super duper secret'
 
-module.exports = { //end base setup
-  
+module.exports = {
+
+//===+==+=+=+==+===*===+==+=+=+==+===*===+==+=+=+==+====
+// USER CONTROLLER
+//===+==+=+=+==+===*===+==+=+=+==+===*===+==+=+=+==+====
+
   userController: {
 
 // create a user
     create: function(req,res){
-      var user = new db.user(req.body)
-      user.save(function(err, user){
+      var user = new db.User(req.body)
+      user.save(function(err, user) {
         console.log("User was created!")
         if(err){
           res.json(err)
@@ -44,14 +48,14 @@ module.exports = { //end base setup
         if(err)res.json(err)
         //compare hashed password with method
         //check if user exists
-        if(user){
+        if(user) {
           //compare hash password
           if(user.checkPassword(req.body.password)){
           var token = jwt.sign({
                              name: user.name,
                              email: user.email
                            }, secret, {
-                                 expiresInMinutes: 1440
+                                 expiresInMinutes: 690
                              });
                          // 4 - Send back a success message with the JWT
                          res.json({
@@ -59,7 +63,6 @@ module.exports = { //end base setup
                              message: 'YOU get a token! YOU get a token! YOU get a token!',
                              token: token
                          })
-            res.json({message: "Log In Success!"})
           } else {
               res.json({message: "Password does not match"})
             }
@@ -68,5 +71,4 @@ module.exports = { //end base setup
         }
       })
     }
-  }
 }
