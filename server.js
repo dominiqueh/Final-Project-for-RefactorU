@@ -8,7 +8,7 @@ var express     = require('express'),
     logger      = require('morgan'),
     cors        = require('cors'),
     mongoose    = require('mongoose'),
-    routes      = require('./api_routes'),
+    apiRoutes   = require('./api_routes'),
     port        = process.env.PORT || 8080,
     databaseURL = "mongodb://localhost:27017/oneBoard"
 
