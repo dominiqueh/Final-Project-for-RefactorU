@@ -29,8 +29,8 @@ app.use(logger('dev'))
 app.use(bodyP.json())
 app.use(bodyP.urlencoded({extended:true}))
 app.use(cors())
-app.use('/api/v1/stemsApp', apiRoutes)
-app.use(express.static(__dirname + '/public'))
+app.use('/api/v1/oneBoard', apiRoutes)
+app.use(express.static(__dirname + '/WEB'))
 
 //==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==
 // STARTING THE SERVER

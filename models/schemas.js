@@ -15,7 +15,7 @@ var mongoose      = require('mongoose'),
       email     : {type: String, required: true},
       password  : {type: String, required: true},
       admin     : Boolean
-    }),
+    })
 
     userSchema.pre('save', function(next){
       var user = this // defining the scope to be the user using this method
@@ -39,7 +39,7 @@ var mongoose      = require('mongoose'),
     email           : String,
     gender          : String,
     age             : Number,
-    photo           : Image,
+    photo           : String,
     dateListed      : Date,
     dateUpdated     : Date,
     center          : String,
@@ -53,6 +53,6 @@ var mongoose      = require('mongoose'),
 // EXPORT & CONNECT ALL SCHEMAS
 //===+==+=+=+==+===*===+==+=+=+==+===*===+==+=+=+==+====//
 module.exports = {
-      User  = mongoose.model('User', userSchema),
-      Entry = mongoose.model('Entry', entrySchema)
+      User  : mongoose.model('User', userSchema),
+      Entry : mongoose.model('Entry', entrySchema)
 }

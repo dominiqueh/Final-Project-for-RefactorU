@@ -70,6 +70,6 @@ module.exports = {
           res.json({message: "User does not exist"})
         }
       })
-    }
+}
 }
 }

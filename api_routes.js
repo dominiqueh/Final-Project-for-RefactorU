@@ -1,15 +1,15 @@
 var
-  apiRouter      = require('express').Router(),
+  apiRouter   = require('express').Router(),
   jwt         = require('jsonwebtoken'),
-  entryCtrl   = require(./controllers/controllerEntry),
-  userCtrl    = require(./controllers/controllerUser),
+  entryCtrl   = require("./controllers/controllerEntry"),
+  userCtrl    = require("./controllers/controllerUser"),
   secret      = "super duper secret"
 
 //sign in route, everyone should be able to access
 //assign routes in the order in which you want people to access, want to restrict access to people not signed -in
 //in between each route, use middleware for routes
 apiRouter.route('/signIn')
-    .post(userCtrl.userController.signin)
+    .post(userCtrl.userController.signIn)
 
 apiRouter.route('/users')
     .get(userCtrl.userController.get)
@@ -36,10 +36,9 @@ apiRouter.use(function(req, res, next){
 //entry route
 apiRouter.route('/entries')
   .get(entryCtrl.entryController.getAll)
-  // should we use id here?
-  .get(entryCtrl.entryController.getSingleEntry)
 
 apiRouter.route('/entries/:id')
+  .get(entryCtrl.entryController.getSingleEntry)
   .put(entryCtrl.entryController.update)
   .delete(entryCtrl.entryController.destroy)
 
