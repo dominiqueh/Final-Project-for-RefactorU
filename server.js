@@ -9,7 +9,7 @@ var express     = require('express'),
     cors        = require('cors'),
     mongoose    = require('mongoose'),
     apiRoutes   = require('./api_routes'),
-    port        = process.env.PORT || 8080,
+    port        = process.env.PORT || 3000,
     databaseURL = "mongodb://localhost:27017/oneBoard"
 
 //==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==+=+=+==
